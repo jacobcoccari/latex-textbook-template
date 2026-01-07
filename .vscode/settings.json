@@ -1,0 +1,118 @@
+{
+  // LaTeX Workshop settings for fast, efficient compilation
+
+  // Use latexmk with our .latexmkrc configuration
+  "latex-workshop.latex.recipe.default": "latexmk (lualatex)",
+
+  // Build recipes
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (lualatex)",
+      "tools": ["latexmk_lualatex"]
+    },
+    {
+      "name": "latexmk (pdflatex)",
+      "tools": ["latexmk_pdflatex"]
+    },
+    {
+      "name": "lualatex direct",
+      "tools": ["lualatex"]
+    }
+  ],
+
+  // Build tools
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk_lualatex",
+      "command": "latexmk",
+      "args": [
+        "-lualatex",
+        "-shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "latexmk_pdflatex",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "lualatex",
+      "command": "lualatex",
+      "args": [
+        "-shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "biber",
+      "command": "biber",
+      "args": ["%DOCFILE%"],
+      "env": {}
+    }
+  ],
+
+  // Output directory for build files (keeps root clean)
+  "latex-workshop.latex.outDir": "./build",
+
+  // Auto-build on save
+  "latex-workshop.latex.autoBuild.run": "onSave",
+
+  // Clean auxiliary files
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.bcf",
+    "*.blg",
+    "*.fdb_latexmk",
+    "*.fls",
+    "*.log",
+    "*.out",
+    "*.run.xml",
+    "*.synctex.gz",
+    "*.toc",
+    "*.lot",
+    "*.lof"
+  ],
+
+  // SyncTeX for PDF ↔ source navigation
+  "latex-workshop.synctex.afterBuild.enabled": true,
+  "latex-workshop.view.pdf.viewer": "tab",
+
+  // Intellisense
+  "latex-workshop.intellisense.package.enabled": true,
+  "latex-workshop.intellisense.citation.backend": "biblatex",
+
+  // Format on save (optional - uses latexindent)
+  "editor.formatOnSave": false,
+
+  // Word wrap for better editing experience
+  "[latex]": {
+    "editor.wordWrap": "on",
+    "editor.lineNumbers": "on",
+    "editor.rulers": [80, 100]
+  },
+
+  "[bibtex]": {
+    "editor.wordWrap": "on"
+  }
+}

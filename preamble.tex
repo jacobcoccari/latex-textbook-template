@@ -1,0 +1,294 @@
+% =============================================================================
+% PREAMBLE - Textbook Style with Margin Notes, Callout Boxes, and Custom Fonts
+% =============================================================================
+
+% -----------------------------------------------------------------------------
+% PAGE GEOMETRY - Wide margins for margin notes
+% -----------------------------------------------------------------------------
+\usepackage[
+  papersize={8.5in,11in},
+  left=1in,
+  right=3in,           % Wide right margin for notes
+  top=1in,
+  bottom=1in,
+  marginparwidth=2.25in,
+  marginparsep=0.25in
+]{geometry}
+
+% -----------------------------------------------------------------------------
+% FONTS - Using fontspec for custom fonts (requires LuaLaTeX or XeLaTeX)
+% -----------------------------------------------------------------------------
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}  % Or use: TeX Gyre Termes, Libertinus Serif
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}[Scale=0.9]
+
+% Alternative: Use system fonts
+% \setmainfont{Georgia}
+% \setsansfont{Helvetica Neue}
+% \setmonofont{SF Mono}[Scale=0.85]
+
+% -----------------------------------------------------------------------------
+% TYPOGRAPHY
+% -----------------------------------------------------------------------------
+\usepackage{microtype}           % Better text justification
+\usepackage{setspace}            % Line spacing
+\onehalfspacing                  % 1.5 line spacing for readability
+
+% Paragraph settings
+\setlength{\parindent}{1.5em}    % First line indent
+\setlength{\parskip}{0pt}        % No extra space between paragraphs
+
+% -----------------------------------------------------------------------------
+% HEADERS AND FOOTERS - Running headers with section title
+% -----------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}  % Clear all headers/footers
+
+% Running header: section in small caps, page number right
+\fancyhead[R]{\small\textsc{\nouppercase{\rightmark}} \quad \thepage}
+\renewcommand{\headrulewidth}{0pt}  % No header line
+
+% Redefine section mark for headers
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+% -----------------------------------------------------------------------------
+% SECTION FORMATTING - Numbered sections with italic titles
+% -----------------------------------------------------------------------------
+\usepackage{titlesec}
+
+% Section: "1.1 Title" with title in italics
+\titleformat{\section}
+  {\normalfont\large\bfseries}  % Format
+  {\thesection}                  % Label
+  {1em}                          % Sep between number and title
+  {\itshape}                     % Title in italics
+
+% Subsection
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsection}
+  {1em}
+  {\itshape}
+
+% Spacing: before, after
+\titlespacing*{\section}{0pt}{2ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{1.5ex plus .5ex minus .2ex}{0.5ex plus .2ex}
+
+% -----------------------------------------------------------------------------
+% MARGIN NOTES - Right-side annotations
+% -----------------------------------------------------------------------------
+\usepackage{marginnote}
+\renewcommand*{\marginfont}{\footnotesize\itshape}
+\usepackage{sidenotes}  % Better sidenote support
+
+% Custom margin note command
+\newcommand{\marginnotetext}[1]{%
+  \marginnote{\raggedright\footnotesize #1}%
+}
+
+% -----------------------------------------------------------------------------
+% COLORS
+% -----------------------------------------------------------------------------
+\usepackage{xcolor}
+
+% Color palette matching textbook style
+\definecolor{boxblue}{HTML}{4A90D9}        % Blue border for info boxes
+\definecolor{boxbluebg}{HTML}{F0F7FF}      % Light blue background
+\definecolor{solutionbg}{HTML}{F5F7FA}     % Light gray for solutions
+\definecolor{definitionheader}{HTML}{2D3748} % Dark charcoal for headers
+\definecolor{codebg}{HTML}{FAFAF8}         % Cream background for code
+\definecolor{warningred}{HTML}{C53030}     % Red for warnings
+\definecolor{linkblue}{HTML}{2B6CB0}       % Blue for hyperlinks
+
+% -----------------------------------------------------------------------------
+% CALLOUT BOXES - Using tcolorbox
+% -----------------------------------------------------------------------------
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% 1. INFORMATIONAL CALLOUT (e.g., "Note to readers")
+\newtcolorbox{infobox}[1][]{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=boxblue,
+  boxrule=2pt,
+  arc=0pt,
+  left=12pt,
+  right=12pt,
+  top=12pt,
+  bottom=12pt,
+  title={\textbf{#1}},
+  coltitle=black,
+  fonttitle=\bfseries,
+  attach boxed title to top left={yshift=-2mm, xshift=5mm},
+  boxed title style={colback=white, colframe=white}
+}
+
+% 2. SOLUTION BOX (numbered, light gray background)
+\newcounter{solutioncount}
+\newtcolorbox{solutionbox}[1][]{
+  enhanced,
+  breakable,
+  colback=solutionbg,
+  colframe=solutionbg!80!black,
+  boxrule=0.5pt,
+  arc=0pt,
+  left=12pt,
+  right=12pt,
+  top=12pt,
+  bottom=12pt,
+  before upper={\refstepcounter{solutioncount}\textbf{Solution \thesolutioncount}\par\vspace{6pt}},
+  #1
+}
+
+% 3. DEFINITION BOX (dark header bar with white text)
+\newtcolorbox{definitionbox}[1][Definition]{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=definitionheader,
+  boxrule=0pt,
+  arc=0pt,
+  left=12pt,
+  right=12pt,
+  top=0pt,
+  bottom=12pt,
+  toptitle=8pt,
+  bottomtitle=8pt,
+  title={\textbf{#1}},
+  coltitle=white,
+  colbacktitle=definitionheader,
+  fonttitle=\bfseries\sffamily
+}
+
+% 4. CODE/PROMPT BOX (cream background, monospace)
+\newtcolorbox{promptbox}{
+  enhanced,
+  breakable,
+  colback=codebg,
+  colframe=codebg!70!black,
+  boxrule=0.5pt,
+  arc=0pt,
+  left=12pt,
+  right=12pt,
+  top=12pt,
+  bottom=12pt
+}
+
+% 5. WARNING BOX (red text, centered)
+\newcommand{\warningnotice}[1]{%
+  \begin{center}
+    \textcolor{warningred}{\textsc{\MakeUppercase{#1}}}
+  \end{center}
+}
+
+% -----------------------------------------------------------------------------
+% CODE LISTINGS
+% -----------------------------------------------------------------------------
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=flexible,
+  keepspaces=true,
+  showstringspaces=false,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  framerule=0.5pt,
+  rulecolor=\color{codebg!70!black},
+  xleftmargin=12pt,
+  xrightmargin=12pt,
+  aboveskip=10pt,
+  belowskip=10pt
+}
+
+% Inline code command
+\newcommand{\code}[1]{\texttt{#1}}
+
+% -----------------------------------------------------------------------------
+% LISTS - Customized bullets and lettered items
+% -----------------------------------------------------------------------------
+\usepackage{enumitem}
+
+% Bullet list with solid dots
+\setlist[itemize]{
+  label=\textbullet,
+  leftmargin=2em,
+  itemsep=3pt,
+  parsep=0pt
+}
+
+% Lettered lists: (a), (b), (c)
+\setlist[enumerate,1]{
+  label=(\alph*),
+  leftmargin=2em,
+  itemsep=3pt,
+  parsep=0pt
+}
+
+% Nested bullets
+\setlist[itemize,2]{
+  label=\textendash,
+  leftmargin=1.5em
+}
+
+% -----------------------------------------------------------------------------
+% BIBLIOGRAPHY - Author-date format
+% -----------------------------------------------------------------------------
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  sorting=nyt,
+  natbib=true,
+  maxcitenames=2,
+  maxbibnames=10
+]{biblatex}
+
+% -----------------------------------------------------------------------------
+% HYPERLINKS
+% -----------------------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=linkblue,
+  pdfauthor={},
+  pdftitle={}
+}
+
+% -----------------------------------------------------------------------------
+% MISCELLANEOUS
+% -----------------------------------------------------------------------------
+\usepackage{graphicx}           % Images
+\usepackage{booktabs}           % Better tables
+\usepackage{caption}            % Caption customization
+\usepackage{float}              % Figure placement
+
+% Caption styling
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  margin=0pt
+}
+
+% Prevent orphans and widows
+\widowpenalty=10000
+\clubpenalty=10000
+
+% -----------------------------------------------------------------------------
+% CUSTOM COMMANDS
+% -----------------------------------------------------------------------------
+
+% Defined term (italics)
+\newcommand{\term}[1]{\textit{#1}}
+
+% Technical term (monospace)
+\newcommand{\tech}[1]{\texttt{#1}}
+
+% Strong emphasis
+\newcommand{\strong}[1]{\textbf{#1}}

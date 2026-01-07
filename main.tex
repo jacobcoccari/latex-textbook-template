@@ -1,0 +1,152 @@
+% =============================================================================
+% MAIN DOCUMENT - Textbook Template
+% Compile with: lualatex (for custom font support)
+% =============================================================================
+\documentclass[11pt, letterpaper]{article}
+
+% Load preamble with all customizations
+\input{preamble}
+
+% Bibliography file
+\addbibresource{references.bib}
+
+% Document metadata
+\hypersetup{
+  pdftitle={Sample Textbook},
+  pdfauthor={Author Name}
+}
+
+\begin{document}
+
+% =============================================================================
+% TITLE PAGE
+% =============================================================================
+\begin{titlepage}
+  \centering
+  \vspace*{2in}
+  {\Huge\bfseries Sample Textbook Title\par}
+  \vspace{1em}
+  {\Large A Subtitle Goes Here\par}
+  \vspace{2em}
+  {\large Author Name\par}
+  \vspace{1em}
+  {\normalsize Version 1.0 --- January 2026\par}
+  \vfill
+\end{titlepage}
+
+% =============================================================================
+% TABLE OF CONTENTS
+% =============================================================================
+\tableofcontents
+\newpage
+
+% =============================================================================
+% CHAPTER 1: INTRODUCTION
+% =============================================================================
+\section{Introduction}
+\label{sec:introduction}
+
+This document demonstrates the textbook layout with margin notes, callout boxes, and proper typography.\marginnotetext{Margin notes appear in the right margin like this one.} The design prioritizes readability while providing multiple ways to highlight important content.
+
+\subsection{Getting Started}
+
+When working with this template, you'll use several key features. The \term{defined terms} appear in italics, while \tech{technical terms} use a monospace font. Use \strong{bold text} sparingly for key concepts.
+
+\begin{infobox}[Note to readers]
+This is an informational callout box. Use it to provide supplementary information, tips, or important notes that should stand out from the main text but don't interrupt the flow of reading.
+\end{infobox}
+
+% =============================================================================
+% CHAPTER 2: CORE CONCEPTS
+% =============================================================================
+\section{Core Concepts}
+\label{sec:concepts}
+
+This section covers the fundamental concepts you need to understand.\marginnotetext{See \textcite{shankar2025} for more details on these concepts.}
+
+\subsection{Working with Data Structures}
+
+A \term{tuple} is an ordered collection of elements. Here's a formal definition:
+
+\begin{definitionbox}[Tuple]
+A \strong{tuple} is an ordered, immutable sequence of elements. Key properties:
+\begin{itemize}
+  \item \tech{length}: The number of elements in the tuple
+  \item \tech{index}: Position of each element (0-based)
+  \item \tech{immutable}: Cannot be modified after creation
+\end{itemize}
+\end{definitionbox}
+
+\subsection{Practical Examples}
+
+Let's walk through an example that demonstrates these concepts in practice.
+
+\begin{solutionbox}
+Given the requirements, we can construct our solution as follows:
+\begin{enumerate}
+  \item \tech{Initialize the data structure}
+  \item \tech{Validate input parameters}
+  \item \tech{Process the request}
+  \item \tech{Return formatted output}
+\end{enumerate}
+\end{solutionbox}
+
+Here's a sample prompt you might use:\marginnotetext{Prompts should be clear and specific to get the best results.}
+
+\begin{promptbox}
+\begin{lstlisting}
+You are an assistant that helps with data analysis.
+Given the following dataset, identify the top 3 trends:
+
+Dataset: sales_2025.csv
+Columns: date, product, revenue, units_sold
+\end{lstlisting}
+\end{promptbox}
+
+% =============================================================================
+% CHAPTER 3: ADVANCED TOPICS
+% =============================================================================
+\section{Advanced Topics}
+\label{sec:advanced}
+
+As noted by \textcite{shankar2025}, advanced techniques build upon the foundations established in earlier sections.
+
+\subsection{Best Practices}
+
+When implementing these systems, follow these guidelines:
+
+\begin{itemize}
+  \item Start with simple approaches before adding complexity
+  \item Test thoroughly at each stage
+  \item Document your decisions and rationale
+  \begin{itemize}
+    \item Include code comments for non-obvious logic
+    \item Maintain a changelog for significant updates
+  \end{itemize}
+  \item Review and refine based on feedback
+\end{itemize}
+
+\warningnotice{Do not distribute without permission}
+
+\subsection{Common Patterns}
+
+Several patterns emerge in practice. The \tech{Property Search} pattern, for example, allows efficient querying of structured data.
+
+\begin{definitionbox}[Property Search]
+The \strong{Property Search} pattern enables:
+\begin{itemize}
+  \item \tech{query}: The search expression
+  \item \tech{filters}: Optional constraints on results
+  \item \tech{sort}: Ordering criteria for output
+\end{itemize}
+\end{definitionbox}
+
+This approach has been validated in production systems handling millions of requests \parencite{shankar2025}.
+
+% =============================================================================
+% BIBLIOGRAPHY
+% =============================================================================
+\newpage
+\printbibliography[title={References}]
+
+\end{document}

@@ -1,0 +1,36 @@
+# LaTeX build artifacts
+build/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lot
+*.lof
+*.idx
+*.ilg
+*.ind
+*.nav
+*.snm
+*.vrb
+
+# Generated PDFs (optional - uncomment to track PDFs)
+# *.pdf
+
+# Editor files
+.DS_Store
+*.swp
+*~
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+
+# Upstream reference
+upstream/
