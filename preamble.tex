@@ -172,24 +172,22 @@
   fonttitle=\bfseries\sffamily
 }
 
-% 4. SAMPLE PROMPT BOX - Teal header bar, monospace content
+% 4. SAMPLE PROMPT BOX - Simple design with left accent bar, monospace content
+\definecolor{promptaccent}{HTML}{6366F1}    % Indigo accent for prompts
+\definecolor{promptbg}{HTML}{F8FAFC}        % Very light gray background
 \newtcolorbox{promptbox}[1][Sample Prompt]{
   enhanced,
   breakable,
-  colback=lightgray,
-  colframe=lightgray,
+  colback=promptbg,
+  colframe=promptbg,
   boxrule=0pt,
   arc=0pt,
   left=12pt,
   right=12pt,
-  top=0pt,
+  top=12pt,
   bottom=12pt,
-  toptitle=8pt,
-  bottomtitle=8pt,
-  title={\textbf{#1}},
-  coltitle=white,
-  colbacktitle=tealheader,
-  fonttitle=\bfseries\sffamily
+  borderline west={3pt}{0pt}{promptaccent},
+  before upper={\textcolor{promptaccent}{\textbf{#1}}\par\vspace{6pt}\ttfamily}
 }
 
 % 5. KEY TAKEAWAY BOX - Red/coral label, salmon background, red left border
