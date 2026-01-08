@@ -12,102 +12,97 @@
   top=1in,
   bottom=1in,
   marginparwidth=2.25in,
-  marginparsep=0.25in
+  marginparsep=0.25in,
+  headheight=14pt      % Fix fancyhdr warning
 ]{geometry}
 
 % -----------------------------------------------------------------------------
 % FONTS - Using fontspec for custom fonts (requires LuaLaTeX or XeLaTeX)
 % -----------------------------------------------------------------------------
 \usepackage{fontspec}
-\setmainfont{Latin Modern Roman}  % Or use: TeX Gyre Termes, Libertinus Serif
+\setmainfont{Latin Modern Roman}
 \setsansfont{Latin Modern Sans}
 \setmonofont{Latin Modern Mono}[Scale=0.9]
-
-% Alternative: Use system fonts
-% \setmainfont{Georgia}
-% \setsansfont{Helvetica Neue}
-% \setmonofont{SF Mono}[Scale=0.85]
 
 % -----------------------------------------------------------------------------
 % TYPOGRAPHY
 % -----------------------------------------------------------------------------
-\usepackage{microtype}           % Better text justification
-\usepackage{setspace}            % Line spacing
-\onehalfspacing                  % 1.5 line spacing for readability
+\usepackage{microtype}
+\usepackage{setspace}
+\onehalfspacing
 
-% Paragraph settings
-\setlength{\parindent}{1.5em}    % First line indent
-\setlength{\parskip}{0pt}        % No extra space between paragraphs
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0pt}
 
 % -----------------------------------------------------------------------------
-% COLORS - Red accent scheme matching Evals style
+% COLORS - Exact specifications
 % -----------------------------------------------------------------------------
 \usepackage{xcolor}
 
-% Primary accent color (red)
-\definecolor{accentred}{HTML}{C41E3A}      % Cardinal red for headers, page numbers
-\definecolor{linkred}{HTML}{C41E3A}        % Red for URLs
-\definecolor{linkblue}{HTML}{2B6CB0}       % Blue for citations
+% Header and accent colors
+\definecolor{headerred}{HTML}{AA0000}       % Running header, URLs
+
+% Hyperlink colors
+\definecolor{citeblue}{HTML}{2471A3}        % Citations
+\definecolor{urlred}{HTML}{AA0000}          % URLs
 
 % Box colors
-\definecolor{grayheader}{HTML}{4A5568}     % Gray header for definition boxes
-\definecolor{graybg}{HTML}{F7FAFC}         % Light gray background
-\definecolor{promptheader}{HTML}{2B6CB0}   % Blue/teal for prompt headers
-\definecolor{promptbg}{HTML}{EBF4FF}       % Light blue background for prompts
-\definecolor{codebg}{HTML}{FAFAF8}         % Cream background for code
-\definecolor{takeawayred}{HTML}{C41E3A}    % Red for key takeaway labels
+\definecolor{tealheader}{HTML}{2A9D8F}      % Solution/Prompt header bars
+\definecolor{charcoalheader}{HTML}{4A4A4A}  % Definition box headers
+\definecolor{graybar}{HTML}{555555}         % Info box left bar
+\definecolor{grayfill}{HTML}{F7F7F7}        % Info box fill
+\definecolor{lightgray}{HTML}{F5F5F5}       % Solution box body
+\definecolor{coralred}{HTML}{C94C4C}        % Key takeaway label/border
+\definecolor{salmonbg}{HTML}{FDF2F2}        % Key takeaway background
+\definecolor{codebg}{HTML}{FAFAFA}          % Code background
 
 % -----------------------------------------------------------------------------
-% HEADERS AND FOOTERS - Right-aligned small caps title + red page number
+% HEADERS AND FOOTERS - Red text, small caps, right-aligned
 % -----------------------------------------------------------------------------
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhf{}  % Clear all headers/footers
+\fancyhf{}
 
-% Running header: small caps title right-aligned, red page number
-\fancyhead[R]{\small\textsc{\@title} \quad \textcolor{accentred}{\thepage}}
-\renewcommand{\headrulewidth}{0pt}  % No header line
+% Running header: red small caps title + red page number, right-aligned
+\fancyhead[R]{\textcolor{headerred}{\small\textsc{\thetitle} \quad \thepage}}
+\renewcommand{\headrulewidth}{0pt}
 
 % Store title for header use
+\newcommand{\thetitle}{Document Title}
 \let\oldtitle\title
-\renewcommand{\title}[1]{\oldtitle{#1}\newcommand{\thetitle}{#1}}
+\renewcommand{\title}[1]{\oldtitle{#1}\renewcommand{\thetitle}{#1}}
 
 % -----------------------------------------------------------------------------
-% SECTION FORMATTING - Numbered sections with italic titles
+% SECTION FORMATTING
 % -----------------------------------------------------------------------------
 \usepackage{titlesec}
 
-% Section: "1.1 Title" with title in italics
 \titleformat{\section}
-  {\normalfont\large\bfseries}  % Format
-  {\thesection}                  % Label
-  {1em}                          % Sep between number and title
-  {\itshape}                     % Title in italics
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {\itshape}
 
-% Subsection
 \titleformat{\subsection}
   {\normalfont\normalsize\bfseries}
   {\thesubsection}
   {1em}
   {\itshape}
 
-% Spacing: before, after
 \titlespacing*{\section}{0pt}{2ex plus 1ex minus .2ex}{1ex plus .2ex}
 \titlespacing*{\subsection}{0pt}{1.5ex plus .5ex minus .2ex}{0.5ex plus .2ex}
 
 % -----------------------------------------------------------------------------
-% MARGIN NOTES - Right-side annotations with attribution support
+% MARGIN NOTES
 % -----------------------------------------------------------------------------
 \usepackage{marginnote}
 \renewcommand*{\marginfont}{\footnotesize}
-\usepackage{sidenotes}  % Better sidenote support
+\usepackage{sidenotes}
 
-% Plain margin note
 \newcommand{\marginnotetext}[1]{%
   \marginnote{\raggedright\footnotesize\itshape #1}%
 }
 
-% Attributed margin note (e.g., "Shreya's Note:")
 \newcommand{\authornote}[2]{%
   \marginnote{\raggedright\footnotesize\textbf{#1's Note:} \itshape #2}%
 }
@@ -118,27 +113,23 @@
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{skins, breakable}
 
-% 1. INFORMATIONAL CALLOUT (e.g., "Note to readers") - gray style
+% 1. INFO/NOTE BOX - Gray left bar, light gray fill
 \newtcolorbox{infobox}[1][Note]{
   enhanced,
   breakable,
-  colback=graybg,
-  colframe=graybg,
+  colback=grayfill,
+  colframe=grayfill,
   boxrule=0pt,
   arc=0pt,
   left=12pt,
   right=12pt,
-  top=0pt,
+  top=12pt,
   bottom=12pt,
-  toptitle=8pt,
-  bottomtitle=8pt,
-  title={\textbf{#1}},
-  coltitle=white,
-  colbacktitle=grayheader,
-  fonttitle=\bfseries\sffamily
+  borderline west={3pt}{0pt}{graybar},
+  before upper={\textbf{#1}\par\vspace{6pt}}
 }
 
-% 2. DEFINITION BOX - Gray header bar, white content, no border
+% 2. DEFINITION BOX - Dark charcoal header (#4A4A4A), white text
 \newtcolorbox{definitionbox}[1][Definition]{
   enhanced,
   breakable,
@@ -154,18 +145,39 @@
   bottomtitle=8pt,
   title={\textbf{#1}},
   coltitle=white,
-  colbacktitle=grayheader,
-  fonttitle=\bfseries\sffamily,
-  shadow={0pt}{0pt}{0pt}{graybg}
+  colbacktitle=charcoalheader,
+  fonttitle=\bfseries\sffamily
 }
 
-% 3. SAMPLE PROMPT BOX - Blue/teal header bar with label
-\newcounter{promptcount}
+% 3. SOLUTION BOX - Teal header bar, light gray body, teal left border
+\newcounter{solutioncount}
+\newtcolorbox{solutionbox}{
+  enhanced,
+  breakable,
+  colback=lightgray,
+  colframe=lightgray,
+  boxrule=0pt,
+  arc=0pt,
+  left=12pt,
+  right=12pt,
+  top=0pt,
+  bottom=12pt,
+  toptitle=8pt,
+  bottomtitle=8pt,
+  borderline west={3pt}{0pt}{tealheader},
+  before upper={\refstepcounter{solutioncount}},
+  title={\textbf{Solution \thesolutioncount}},
+  coltitle=white,
+  colbacktitle=tealheader,
+  fonttitle=\bfseries\sffamily
+}
+
+% 4. SAMPLE PROMPT BOX - Teal header bar, monospace content
 \newtcolorbox{promptbox}[1][Sample Prompt]{
   enhanced,
   breakable,
-  colback=promptbg,
-  colframe=promptbg,
+  colback=lightgray,
+  colframe=lightgray,
   boxrule=0pt,
   arc=0pt,
   left=12pt,
@@ -176,47 +188,31 @@
   bottomtitle=8pt,
   title={\textbf{#1}},
   coltitle=white,
-  colbacktitle=promptheader,
+  colbacktitle=tealheader,
   fonttitle=\bfseries\sffamily
 }
 
-% 4. KEY TAKEAWAY BOX - Red label, numbered
+% 5. KEY TAKEAWAY BOX - Red/coral label, salmon background, red left border
 \newcounter{takeawaycount}
 \newtcolorbox{takeawaybox}{
   enhanced,
   breakable,
-  colback=white,
-  colframe=takeawayred,
-  boxrule=1.5pt,
-  arc=0pt,
-  left=12pt,
-  right=12pt,
-  top=12pt,
-  bottom=12pt,
-  before upper={\refstepcounter{takeawaycount}\textcolor{takeawayred}{\textbf{Key Takeaway \thetakeawaycount}}\par\vspace{6pt}}
-}
-
-% 5. SOLUTION BOX (numbered, light gray background)
-\newcounter{solutioncount}
-\newtcolorbox{solutionbox}[1][]{
-  enhanced,
-  breakable,
-  colback=graybg,
-  colframe=graybg,
+  colback=salmonbg,
+  colframe=salmonbg,
   boxrule=0pt,
   arc=0pt,
   left=12pt,
   right=12pt,
   top=12pt,
   bottom=12pt,
-  before upper={\refstepcounter{solutioncount}\textbf{Solution \thesolutioncount}\par\vspace{6pt}},
-  #1
+  borderline west={3pt}{0pt}{coralred},
+  before upper={\refstepcounter{takeawaycount}\textcolor{coralred}{\textbf{Key Takeaway \thetakeawaycount}}\par\vspace{6pt}}
 }
 
-% 6. WARNING NOTICE (red text, centered, small caps)
+% 6. WARNING NOTICE - Red text, centered, small caps
 \newcommand{\warningnotice}[1]{%
   \begin{center}
-    \textcolor{accentred}{\textsc{\MakeUppercase{#1}}}
+    \textcolor{headerred}{\textsc{\MakeUppercase{#1}}}
   \end{center}
 }
 
@@ -239,15 +235,13 @@
   belowskip=6pt
 }
 
-% Inline code command
 \newcommand{\code}[1]{\texttt{#1}}
 
 % -----------------------------------------------------------------------------
-% LISTS - Customized bullets and lettered items
+% LISTS
 % -----------------------------------------------------------------------------
 \usepackage{enumitem}
 
-% Bullet list with solid dots
 \setlist[itemize]{
   label=\textbullet,
   leftmargin=2em,
@@ -255,7 +249,6 @@
   parsep=0pt
 }
 
-% Lettered lists: (a), (b), (c)
 \setlist[enumerate,1]{
   label=(\alph*),
   leftmargin=2em,
@@ -263,14 +256,13 @@
   parsep=0pt
 }
 
-% Nested bullets
 \setlist[itemize,2]{
   label=\textendash,
   leftmargin=1.5em
 }
 
 % -----------------------------------------------------------------------------
-% BIBLIOGRAPHY - Author-date format
+% BIBLIOGRAPHY
 % -----------------------------------------------------------------------------
 \usepackage[
   backend=biber,
@@ -282,14 +274,14 @@
 ]{biblatex}
 
 % -----------------------------------------------------------------------------
-% HYPERLINKS - Blue citations, red URLs
+% HYPERLINKS - Blue citations (#2471A3), red URLs (#AA0000)
 % -----------------------------------------------------------------------------
 \usepackage{hyperref}
 \hypersetup{
   colorlinks=true,
   linkcolor=black,
-  citecolor=linkblue,
-  urlcolor=linkred,
+  citecolor=citeblue,
+  urlcolor=urlred,
   pdfauthor={},
   pdftitle={}
 }
@@ -297,31 +289,23 @@
 % -----------------------------------------------------------------------------
 % MISCELLANEOUS
 % -----------------------------------------------------------------------------
-\usepackage{graphicx}           % Images
-\usepackage{booktabs}           % Better tables
-\usepackage{caption}            % Caption customization
-\usepackage{float}              % Figure placement
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{float}
 
-% Caption styling
 \captionsetup{
   font=small,
   labelfont=bf,
   margin=0pt
 }
 
-% Prevent orphans and widows
 \widowpenalty=10000
 \clubpenalty=10000
 
 % -----------------------------------------------------------------------------
 % CUSTOM COMMANDS
 % -----------------------------------------------------------------------------
-
-% Defined term (italics)
 \newcommand{\term}[1]{\textit{#1}}
-
-% Technical term (monospace)
 \newcommand{\tech}[1]{\texttt{#1}}
-
-% Strong emphasis (renamed to avoid conflict with existing \strong)
 \renewcommand{\strong}[1]{\textbf{#1}}
