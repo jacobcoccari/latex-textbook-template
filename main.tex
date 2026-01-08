@@ -1,36 +1,32 @@
 % =============================================================================
-% MAIN DOCUMENT - Textbook Template
+% TEXTBOOK TEMPLATE
 % Compile with: lualatex (for custom font support)
 % =============================================================================
 \documentclass[11pt, letterpaper]{article}
 
-% Load preamble with all customizations
 \input{preamble}
-
-% Bibliography file
 \addbibresource{references.bib}
 
-% Document title (used in running header)
-\title{Sample Textbook}
+% Document title (appears in running header)
+\title{Your Book Title}
 
-% Document metadata
 \hypersetup{
-  pdftitle={Sample Textbook},
+  pdftitle={Your Book Title},
   pdfauthor={Author Name}
 }
 
 \begin{document}
 
 % =============================================================================
-% TITLE PAGE - Use symmetric margins for centering
+% TITLE PAGE
 % =============================================================================
 \newgeometry{left=1.5in, right=1.5in, top=1in, bottom=1in}
 \begin{titlepage}
   \centering
   \vspace*{2in}
-  {\Huge\bfseries Sample Textbook Title\par}
+  {\Huge\bfseries Your Book Title\par}
   \vspace{1em}
-  {\Large A Subtitle Goes Here\par}
+  {\Large Subtitle Goes Here\par}
   \vspace{2em}
   {\large Author Name\par}
   \vspace{1em}
@@ -46,119 +42,63 @@
 \newpage
 
 % =============================================================================
-% CHAPTER 1: INTRODUCTION
+% INTRODUCTION
 % =============================================================================
 \section{Introduction}
 \label{sec:introduction}
 
-This document demonstrates the textbook layout with margin notes, callout boxes, and proper typography.\authornote{Shreya}{Margin notes can now include attribution like this one.} The design prioritizes readability while providing multiple ways to highlight important content.
+Your introduction here.\marginnotetext{Plain margin note.}
 
-\subsection{Getting Started}
-
-When working with this template, you'll use several key features. The \term{defined terms} appear in italics, while \tech{technical terms} use a monospace font. Use \strong{bold text} sparingly for key concepts.
-
-\begin{infobox}[Note to readers]
-This is an informational callout box with a gray header. Use it to provide supplementary information, tips, or important notes that should stand out from the main text but don't interrupt the flow of reading.
+\begin{infobox}[Note]
+Info boxes for supplementary notes.
 \end{infobox}
 
 \begin{takeawaybox}
-The key takeaway box uses red accents to highlight critical information that readers should remember. This numbered format helps readers quickly identify the most important points.
+Key takeaway boxes for critical points readers should remember.
 \end{takeawaybox}
 
 % =============================================================================
-% CHAPTER 2: CORE CONCEPTS
+% DEFINITIONS
 % =============================================================================
-\section{Core Concepts}
-\label{sec:concepts}
+\section{Definitions}
+\label{sec:definitions}
 
-This section covers the fundamental concepts you need to understand.\marginnotetext{Plain margin notes appear in italics without attribution.}
-
-\subsection{Working with Data Structures}
-
-A \term{tuple} is an ordered collection of elements. Here's a formal definition:
-
-\begin{definitionbox}[Tuple]
-A \strong{tuple} is an ordered, immutable sequence of elements. Key properties:
+\begin{definitionbox}[Term Name]
+Define key terms with bullet points:
 \begin{itemize}
-  \item \tech{length}: The number of elements in the tuple
-  \item \tech{index}: Position of each element (0-based)
-  \item \tech{immutable}: Cannot be modified after creation
+  \item \tech{property}: Description
+  \item \tech{attribute}: Description
 \end{itemize}
 \end{definitionbox}
 
-\subsection{Practical Examples}
+% =============================================================================
+% EXERCISES
+% =============================================================================
+\section{Exercises}
+\label{sec:exercises}
 
-Let's walk through an example that demonstrates these concepts in practice.\authornote{Hamel}{This example comes from a real production system we built.}
+\authornote{Author}{Attributed margin notes include the author's name.}
 
 \begin{questionbox}
-Given a dataset with columns \tech{date}, \tech{product}, \tech{revenue}, and \tech{units\_sold}, how would you structure a query to find the top 3 trending products by revenue growth?
+Your question here. Auto-numbered Q1, Q2, etc.
 \end{questionbox}
 
 \begin{solutionbox}
-We can construct our solution as follows:
-\begin{enumerate}
-  \item \tech{Initialize the data structure} --- Load the dataset and parse date fields
-  \item \tech{Validate input parameters} --- Ensure all required columns exist
-  \item \tech{Process the request} --- Calculate revenue growth per product over time
-  \item \tech{Return formatted output} --- Sort by growth rate and return top 3
-\end{enumerate}
+Your solution here. Auto-numbered S1, S2, etc.
 \end{solutionbox}
 
-Here's a sample prompt you might use:
+% =============================================================================
+% PROMPTS
+% =============================================================================
+\section{Prompts}
+\label{sec:prompts}
 
 \begin{promptbox}[Sample Prompt]
-You are an assistant that helps with data analysis.
-Given the following dataset, identify the top 3 trends:
-
-Dataset: sales\_2025.csv\\
-Columns: date, product, revenue, units\_sold
+Prompt content in monospace font.
+Use for code, prompts, or formatted text.
 \end{promptbox}
 
-\begin{takeawaybox}
-When designing prompts, be specific about the expected output format and provide context about the data being analyzed. This significantly improves response quality.
-\end{takeawaybox}
-
-% =============================================================================
-% CHAPTER 3: ADVANCED TOPICS
-% =============================================================================
-\section{Advanced Topics}
-\label{sec:advanced}
-
-As noted by \textcite{shankar2025}, advanced techniques build upon the foundations established in earlier sections.
-
-\subsection{Best Practices}
-
-When implementing these systems, follow these guidelines:
-
-\begin{itemize}
-  \item Start with simple approaches before adding complexity
-  \item Test thoroughly at each stage
-  \item Document your decisions and rationale
-  \begin{itemize}
-    \item Include code comments for non-obvious logic
-    \item Maintain a changelog for significant updates
-  \end{itemize}
-  \item Review and refine based on feedback
-\end{itemize}
-
-\warningnotice{Do not distribute without permission}
-
-\subsection{Common Patterns}
-
-Several patterns emerge in practice. The \tech{Property Search} pattern, for example, allows efficient querying of structured data.
-
-\begin{definitionbox}[Property Search]
-The \strong{Property Search} pattern enables:
-\begin{itemize}
-  \item \tech{query}: The search expression
-  \item \tech{filters}: Optional constraints on results
-  \item \tech{sort}: Ordering criteria for output
-\end{itemize}
-\end{definitionbox}
-
-This approach has been validated in production systems handling millions of requests \parencite{shankar2025}.
-
-Visit \url{https://example.com/docs} for more information on implementation details.
+\warningnotice{Warning notices for important cautions}
 
 % =============================================================================
 % BIBLIOGRAPHY
