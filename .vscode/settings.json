@@ -20,11 +20,11 @@
     }
   ],
 
-  // Build tools
+  // Build tools (with explicit PATH for TeX binaries)
   "latex-workshop.latex.tools": [
     {
       "name": "latexmk_lualatex",
-      "command": "latexmk",
+      "command": "/Library/TeX/texbin/latexmk",
       "args": [
         "-lualatex",
         "-shell-escape",
@@ -34,11 +34,13 @@
         "-outdir=%OUTDIR%",
         "%DOC%"
       ],
-      "env": {}
+      "env": {
+        "PATH": "/Library/TeX/texbin:/usr/local/bin:/usr/bin:/bin"
+      }
     },
     {
       "name": "latexmk_pdflatex",
-      "command": "latexmk",
+      "command": "/Library/TeX/texbin/latexmk",
       "args": [
         "-pdf",
         "-shell-escape",
@@ -48,11 +50,13 @@
         "-outdir=%OUTDIR%",
         "%DOC%"
       ],
-      "env": {}
+      "env": {
+        "PATH": "/Library/TeX/texbin:/usr/local/bin:/usr/bin:/bin"
+      }
     },
     {
       "name": "lualatex",
-      "command": "lualatex",
+      "command": "/Library/TeX/texbin/lualatex",
       "args": [
         "-shell-escape",
         "-synctex=1",
@@ -60,13 +64,17 @@
         "-file-line-error",
         "%DOC%"
       ],
-      "env": {}
+      "env": {
+        "PATH": "/Library/TeX/texbin:/usr/local/bin:/usr/bin:/bin"
+      }
     },
     {
       "name": "biber",
-      "command": "biber",
+      "command": "/Library/TeX/texbin/biber",
       "args": ["%DOCFILE%"],
-      "env": {}
+      "env": {
+        "PATH": "/Library/TeX/texbin:/usr/local/bin:/usr/bin:/bin"
+      }
     }
   ],
 
