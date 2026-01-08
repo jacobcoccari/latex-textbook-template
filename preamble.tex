@@ -149,7 +149,23 @@
   fonttitle=\bfseries\sffamily
 }
 
-% 3. SOLUTION BOX - Teal header bar, light gray body, teal left border
+% 3. QUESTION BOX - For exercises, pairs with solution box
+\newcounter{questioncount}
+\newtcolorbox{questionbox}{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=charcoalheader,
+  boxrule=1pt,
+  arc=0pt,
+  left=12pt,
+  right=12pt,
+  top=12pt,
+  bottom=12pt,
+  before upper={\refstepcounter{questioncount}\textbf{Question \thequestioncount}\par\vspace{6pt}}
+}
+
+% 4. SOLUTION BOX - Teal header bar, light gray body, teal left border
 \newcounter{solutioncount}
 \newtcolorbox{solutionbox}{
   enhanced,

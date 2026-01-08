@@ -90,13 +90,17 @@ A \strong{tuple} is an ordered, immutable sequence of elements. Key properties:
 
 Let's walk through an example that demonstrates these concepts in practice.\authornote{Hamel}{This example comes from a real production system we built.}
 
+\begin{questionbox}
+Given a dataset with columns \tech{date}, \tech{product}, \tech{revenue}, and \tech{units\_sold}, how would you structure a query to find the top 3 trending products by revenue growth?
+\end{questionbox}
+
 \begin{solutionbox}
-Given the requirements, we can construct our solution as follows:
+We can construct our solution as follows:
 \begin{enumerate}
-  \item \tech{Initialize the data structure}
-  \item \tech{Validate input parameters}
-  \item \tech{Process the request}
-  \item \tech{Return formatted output}
+  \item \tech{Initialize the data structure} --- Load the dataset and parse date fields
+  \item \tech{Validate input parameters} --- Ensure all required columns exist
+  \item \tech{Process the request} --- Calculate revenue growth per product over time
+  \item \tech{Return formatted output} --- Sort by growth rate and return top 3
 \end{enumerate}
 \end{solutionbox}
 
