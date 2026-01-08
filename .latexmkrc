@@ -5,14 +5,14 @@
 $pdf_mode = 4;  # 4 = lualatex, 1 = pdflatex, 5 = xelatex
 
 # LuaLaTeX command with shell-escape for minted/external tools
-$lualatex = 'lualatex -interaction=nonstopmode -shell-escape -synctex=1 %O %S';
+$lualatex = '/Library/TeX/texbin/lualatex -interaction=nonstopmode -shell-escape -synctex=1 %O %S';
 
 # Alternative: pdfLaTeX (faster, but no custom fonts)
 # $pdf_mode = 1;
-# $pdflatex = 'pdflatex -interaction=nonstopmode -shell-escape -synctex=1 %O %S';
+# $pdflatex = '/Library/TeX/texbin/pdflatex -interaction=nonstopmode -shell-escape -synctex=1 %O %S';
 
 # Biber for bibliography (modern replacement for bibtex)
-$biber = 'biber %O %S';
+$biber = '/Library/TeX/texbin/biber %O %S';
 $bibtex_use = 2;  # Run biber when needed
 
 # Output directory (keep build files organized)
