@@ -149,25 +149,9 @@
   fonttitle=\bfseries\sffamily
 }
 
-% 3. QUESTION BOX - For exercises, pairs with solution box
+% 3. QUESTION BOX - Teal header bar, light gray body (Q1, Q2, etc.)
 \newcounter{questioncount}
 \newtcolorbox{questionbox}{
-  enhanced,
-  breakable,
-  colback=white,
-  colframe=charcoalheader,
-  boxrule=1pt,
-  arc=0pt,
-  left=12pt,
-  right=12pt,
-  top=12pt,
-  bottom=12pt,
-  before upper={\refstepcounter{questioncount}\textbf{Question \thequestioncount}\par\vspace{6pt}}
-}
-
-% 4. SOLUTION BOX - Teal header bar, light gray body, teal left border
-\newcounter{solutioncount}
-\newtcolorbox{solutionbox}{
   enhanced,
   breakable,
   colback=lightgray,
@@ -181,11 +165,27 @@
   toptitle=8pt,
   bottomtitle=8pt,
   borderline west={3pt}{0pt}{tealheader},
-  before upper={\refstepcounter{solutioncount}},
-  title={\textbf{Solution \thesolutioncount}},
+  before upper={\refstepcounter{questioncount}},
+  title={\textbf{Q\thequestioncount}},
   coltitle=white,
   colbacktitle=tealheader,
   fonttitle=\bfseries\sffamily
+}
+
+% 4. SOLUTION BOX - Charcoal border, white background (S1, S2, etc.)
+\newcounter{solutioncount}
+\newtcolorbox{solutionbox}{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=charcoalheader,
+  boxrule=1pt,
+  arc=0pt,
+  left=12pt,
+  right=12pt,
+  top=12pt,
+  bottom=12pt,
+  before upper={\refstepcounter{solutioncount}\textbf{S\thesolutioncount}\par\vspace{6pt}}
 }
 
 % 4. SAMPLE PROMPT BOX - Simple design with left accent bar, monospace content
