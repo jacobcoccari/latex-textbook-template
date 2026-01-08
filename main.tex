@@ -10,6 +10,9 @@
 % Bibliography file
 \addbibresource{references.bib}
 
+% Document title (used in running header)
+\title{Sample Textbook}
+
 % Document metadata
 \hypersetup{
   pdftitle={Sample Textbook},
@@ -46,15 +49,19 @@
 \section{Introduction}
 \label{sec:introduction}
 
-This document demonstrates the textbook layout with margin notes, callout boxes, and proper typography.\marginnotetext{Margin notes appear in the right margin like this one.} The design prioritizes readability while providing multiple ways to highlight important content.
+This document demonstrates the textbook layout with margin notes, callout boxes, and proper typography.\authornote{Shreya}{Margin notes can now include attribution like this one.} The design prioritizes readability while providing multiple ways to highlight important content.
 
 \subsection{Getting Started}
 
 When working with this template, you'll use several key features. The \term{defined terms} appear in italics, while \tech{technical terms} use a monospace font. Use \strong{bold text} sparingly for key concepts.
 
 \begin{infobox}[Note to readers]
-This is an informational callout box. Use it to provide supplementary information, tips, or important notes that should stand out from the main text but don't interrupt the flow of reading.
+This is an informational callout box with a gray header. Use it to provide supplementary information, tips, or important notes that should stand out from the main text but don't interrupt the flow of reading.
 \end{infobox}
+
+\begin{takeawaybox}
+The key takeaway box uses red accents to highlight critical information that readers should remember. This numbered format helps readers quickly identify the most important points.
+\end{takeawaybox}
 
 % =============================================================================
 % CHAPTER 2: CORE CONCEPTS
@@ -62,7 +69,7 @@ This is an informational callout box. Use it to provide supplementary informatio
 \section{Core Concepts}
 \label{sec:concepts}
 
-This section covers the fundamental concepts you need to understand.\marginnotetext{See \textcite{shankar2025} for more details on these concepts.}
+This section covers the fundamental concepts you need to understand.\marginnotetext{Plain margin notes appear in italics without attribution.}
 
 \subsection{Working with Data Structures}
 
@@ -79,7 +86,7 @@ A \strong{tuple} is an ordered, immutable sequence of elements. Key properties:
 
 \subsection{Practical Examples}
 
-Let's walk through an example that demonstrates these concepts in practice.
+Let's walk through an example that demonstrates these concepts in practice.\authornote{Hamel}{This example comes from a real production system we built.}
 
 \begin{solutionbox}
 Given the requirements, we can construct our solution as follows:
@@ -91,9 +98,9 @@ Given the requirements, we can construct our solution as follows:
 \end{enumerate}
 \end{solutionbox}
 
-Here's a sample prompt you might use:\marginnotetext{Prompts should be clear and specific to get the best results.}
+Here's a sample prompt you might use:
 
-\begin{promptbox}
+\begin{promptbox}[Sample Prompt]
 \begin{lstlisting}
 You are an assistant that helps with data analysis.
 Given the following dataset, identify the top 3 trends:
@@ -102,6 +109,10 @@ Dataset: sales_2025.csv
 Columns: date, product, revenue, units_sold
 \end{lstlisting}
 \end{promptbox}
+
+\begin{takeawaybox}
+When designing prompts, be specific about the expected output format and provide context about the data being analyzed. This significantly improves response quality.
+\end{takeawaybox}
 
 % =============================================================================
 % CHAPTER 3: ADVANCED TOPICS
@@ -142,6 +153,8 @@ The \strong{Property Search} pattern enables:
 \end{definitionbox}
 
 This approach has been validated in production systems handling millions of requests \parencite{shankar2025}.
+
+Visit \url{https://example.com/docs} for more information on implementation details.
 
 % =============================================================================
 % BIBLIOGRAPHY
